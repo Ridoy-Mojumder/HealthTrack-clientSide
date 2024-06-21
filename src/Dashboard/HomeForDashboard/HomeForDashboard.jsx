@@ -7,6 +7,7 @@ import {
 import { AuthContext } from '../../Provider/AuthProvider';
 import UseAxiosSecure from '../../UseHook/UseAxiosSecure/UseAxiosSecure';
 import { ClipLoader } from 'react-spinners'; // Import ClipLoader from react-spinners
+import { Helmet } from 'react-helmet'; // Import Helmet
 
 const HomeForDashboard = () => {
     const { user } = useContext(AuthContext); // Assuming AuthContext provides the user
@@ -39,6 +40,11 @@ const HomeForDashboard = () => {
 
     return (
         <div className="flex min-h-screen bg-gray-200">
+            <Helmet>
+                <title>Dashboard - HealthTrack Diagnostic Center</title>
+                <meta name="description" content="Welcome to your dashboard at HealthTrack Diagnostic Center. Manage your profile, appointments, and view test results." />
+            </Helmet>
+
             {/* Sidebar navigation */}
             <div className="w-64 bg-white shadow-lg flex-shrink-0">
                 <div className="p-4">
@@ -68,11 +74,12 @@ const HomeForDashboard = () => {
                     <ul className="space-y-2">
                         <NavItem to='/' icon={FaHome}>Home</NavItem>
                         <NavItem to='/about' icon={FaBars}>About</NavItem>
-                        <NavItem to='/service' icon={FaStore}>Service</NavItem>
+                        <NavItem to='/services' icon={FaStore}>Service</NavItem>
                         <NavItem to='/contact' icon={FaPhone}>Contact</NavItem>
                     </ul>
                 </div>
             </div>
+
             {/* Main content area */}
             <div className="flex-1 p-8">
                 <h1 className="text-3xl font-bold text-gray-800 mb-6">Welcome to Your Dashboard</h1>
