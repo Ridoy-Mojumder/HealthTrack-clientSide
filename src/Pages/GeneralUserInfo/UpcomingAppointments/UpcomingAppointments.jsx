@@ -14,7 +14,7 @@ const UpcomingAppointments = () => {
       try {
         // Replace with your actual API call
         const response = await axiosSecure.get('/bookings');
-        console.log(response.data)
+        //console.log(response.data)
         const filteredAppointments = response.data.filter(appointment => {
           return appointment.email === user.email && appointment.status === 'Booked';
         });
@@ -50,7 +50,7 @@ const UpcomingAppointments = () => {
       }
     });
   };
-console.log(appointments)
+//console.log(appointments)
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Upcoming Appointments</h1>

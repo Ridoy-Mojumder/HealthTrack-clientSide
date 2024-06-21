@@ -14,7 +14,7 @@ const Statistics = () => {
   const fetchBookings = async () => {
     try {
       const response = await axiosSecure.get('/bookings'); // Adjust URL as per your backend API
-      console.log('Fetched bookings:', response.data); // Log fetched bookings
+      //console.log('Fetched bookings:', response.data); // Log fetched bookings
       setBookings(response.data);
       setIsLoading(false);
     } catch (error) {

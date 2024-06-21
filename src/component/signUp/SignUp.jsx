@@ -14,7 +14,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    console.log(confirmPassword);
+    //console.log(confirmPassword);
 
 
     // Form validation and submission logic
@@ -41,7 +41,7 @@ const SignUp = () => {
         createUser(data.email, data.password)
             .then((user) => {
                 navigate('/login');
-                console.log("User created:", user.user);
+                //console.log("User created:", user.user);
                 updatedProfile(data.name, data.photoURL)
                     .then(() => {
                         const userInfo = {

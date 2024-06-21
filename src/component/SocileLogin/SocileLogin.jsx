@@ -24,7 +24,7 @@ const SocileLogin = () => {
             }
             axiosPublic.post('/users', userInfo)
             .then(res => {
-                console.log(res.data)
+                //console.log(res.data)
             })
             Swal.fire({
                 title: 'Success!',
@@ -33,7 +33,7 @@ const SocileLogin = () => {
                 confirmButtonText: 'OK'
             });
             navigate(from, {replace:true})
-            console.log(user);
+            //console.log(user);
         })
     }
 

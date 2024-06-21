@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
     const axiosPublic = UseAxiosPublic()
 
     const createUser = (email, password) => {
-        console.log(email, password)
+        //console.log(email, password)
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password);
     }
@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            console.log("Current user Found", currentUser)
+            //console.log("Current user Found", currentUser)
 
             if(currentUser){
                 //get token and store client

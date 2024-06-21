@@ -36,7 +36,7 @@ const Login = () => {
         const email = form.email.value;
         const captcha = form.captcha.value;
         const password = form.password.value;
-        console.log(email, captcha, password);
+        //console.log(email, captcha, password);
 
 
 
@@ -50,7 +50,7 @@ const Login = () => {
                     confirmButtonText: 'OK'
                 });
                 navigate(from, {replace:true})
-                console.log(user);
+                //console.log(user);
             })
 
 

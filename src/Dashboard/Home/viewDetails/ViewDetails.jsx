@@ -36,9 +36,9 @@ const ViewDetails = () => {
 
     const handlePromoCodeApply = async () => {
         try {
-            console.log("Applying promo code:", promoCode); // Log the promo code being applied
+            //console.log("Applying promo code:", promoCode); // Log the promo code being applied
             const response = await axios.post('/apply-promo', { promoCode });
-            console.log("Promo code response:", response.data); // Log the response from the backend
+            //console.log("Promo code response:", response.data); // Log the response from the backend
             const { discountRate } = response.data;
 
             if (discountRate > 0) {
