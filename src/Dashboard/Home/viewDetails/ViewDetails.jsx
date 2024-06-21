@@ -34,23 +34,7 @@ const ViewDetails = () => {
         fetchTestDetails();
     }, [id, axiosSecure]);
 
-    const handlePromoCodeApply = async () => {
-        try {
-            //console.log("Applying promo code:", promoCode); // Log the promo code being applied
-            const response = await axios.post('/apply-promo', { promoCode });
-            //console.log("Promo code response:", response.data); // Log the response from the backend
-            const { discountRate } = response.data;
-
-            if (discountRate > 0) {
-                setDiscount(discountRate);
-            } else {
-                window.alert("Invalid promo code. Please try again.");
-            }
-        } catch (error) {
-            console.error("Error applying promo code:", error);
-            window.alert("Failed to apply promo code. Please try again.");
-        }
-    };
+   
 
     const handleBookNow = () => {
         if (test.slots > 0) {
