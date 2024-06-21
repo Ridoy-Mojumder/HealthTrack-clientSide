@@ -21,6 +21,22 @@ const PersonalizedRecommendation = () => {
     useEffect(() => {
         fetchRecommendations();
     }, []);
+    useEffect(() => {
+        const fetchUserRole = async () => {
+            try {
+                const response = await axiosSecure.get(`/users/role/${user.email}`);
+                setRole(response.data.role);
+            } catch (error) {
+                console.error('Error fetching user role:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchUserRole();
+    }, [user, axiosSecure]);
+
+
     
     const fetchRecommendations = async () => {
         try {
