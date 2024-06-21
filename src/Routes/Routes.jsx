@@ -19,6 +19,7 @@ import Statistics from "../Pages/Statistics/Statistics";
 import Reservation from "../Pages/Reservation/Reservation";
 import UpcomingAppointments from "../Pages/GeneralUserInfo/UpcomingAppointments/UpcomingAppointments";
 import TestResults from "../Pages/GeneralUserInfo/TestResults/TestResults";
+import Service from "../component/Service/Service";
 
 export const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
         {
           path: "/about",
           element: <AboutUs />,
+        },
+        {
+          path: "/services",
+          element: <Service />,
         },
         {
           path: "/contact",
