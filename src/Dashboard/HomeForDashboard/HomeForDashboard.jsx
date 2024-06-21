@@ -30,13 +30,6 @@ const HomeForDashboard = () => {
         fetchUserRole();
     }, [user, axiosSecure]);
 
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center min-h-screen bg-gray-200">
-                <ClipLoader color="#4F46E5" loading={loading} size={50} />
-            </div>
-        );
-    }
 
     return (
         <div className="flex min-h-screen bg-gray-200">
