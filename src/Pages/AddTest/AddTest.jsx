@@ -1,9 +1,9 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import Swal from 'sweetalert2';
 import UseAxiosSecure from '../../UseHook/UseAxiosSecure/UseAxiosSecure';
 
 const AddTest = () => {
-    const axiosSecure = UseAxiosSecure()
+    const axiosSecure = UseAxiosSecure();
     const [testData, setTestData] = useState({
         testName: '',
         imageUrl: '',

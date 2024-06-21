@@ -3,6 +3,7 @@ import 'react-awesome-slider/dist/styles.css';
 import { Helmet } from 'react-helmet';
 import HomeForBanner from '../../Dashboard/Home/HomeForBanner';
 import AllTestForHome from '../../Dashboard/Home/AllTestForHome';
+import PersonalizedRecommendation from '../../Pages/PersonalizedRecommendation/PersonalizedRecommendation';
 
 const Home = () => {
     return (
@@ -38,6 +39,7 @@ const Home = () => {
                 </section>
             </div>
 
+                <PersonalizedRecommendation></PersonalizedRecommendation>
         </div>
     );
 };

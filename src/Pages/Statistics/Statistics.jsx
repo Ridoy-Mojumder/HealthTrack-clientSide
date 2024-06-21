@@ -30,7 +30,7 @@ const Statistics = () => {
   const calculateServiceCounts = () => {
     const serviceCounts = {};
     bookings.forEach((booking) => {
-      const serviceName = booking.service; // Assuming service name is stored in 'service' field
+      const serviceName = booking.testName; // Assuming service name is stored in 'service' field
       if (serviceCounts[serviceName]) {
         serviceCounts[serviceName]++;
       } else {
