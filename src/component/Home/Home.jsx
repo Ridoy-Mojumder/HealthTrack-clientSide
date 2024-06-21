@@ -12,6 +12,7 @@ const Home = () => {
                 <title>Home - HealthTrack Diagnostic Center</title>
                 <meta name="description" content="Contact us to get in touch with our diagnostic center. Leave your comments and feedback." />
             </Helmet>
+            <HomeForBanner></HomeForBanner>
 
             <AllTestForHome></AllTestForHome>
             <div>
