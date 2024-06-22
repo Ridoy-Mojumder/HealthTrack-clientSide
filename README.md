@@ -3,8 +3,8 @@
 HealthTrack is a robust full-stack web application designed to manage appointments, patient records, test results, and administrative tasks for a diagnostic center.
 
 ## Admin Access
-- **Username:** admin@example.com
-- **Password:** adminpassword
+- **Username:** aopo@gmail.com
+- **Password:** Aopo@5654
 
 ## Live Site URL
 [HealthTrack Live Site](https://health-track-186e2.web.app/)
