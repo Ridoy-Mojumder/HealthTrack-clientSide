@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ClipLoader } from 'react-spinners';
 import UseAxiosSecure from '../../../UseHook/UseAxiosSecure/UseAxiosSecure';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import axios from 'axios'; // Import axios for making HTTP requests
 import PrivateRoute from '../../../Routes/PrivateRoute/PrivateRoute';
+import Swal from 'sweetalert2';
 
 const ViewDetails = () => {
     const { id } = useParams();
@@ -34,13 +33,51 @@ const ViewDetails = () => {
         fetchTestDetails();
     }, [id, axiosSecure]);
 
-   
+    const handlePromoCodeApply = async () => {
+        try {
+            // Fetching banners to get promo codes
+            const response = await axiosSecure.get('/banners');
+            const banners = response.data;
+            
+            const validBanner = banners.find(banner => banner.couponCode === promoCode);
+
+            if (validBanner) {
+                setDiscount(validBanner.discountRate);
+                Swal.fire({
+                    title: 'Success!',
+                    text: `Promo code applied! You get a ${validBanner.discountRate}% discount.`,
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Invalid promo code. Please try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        } catch (error) {
+            console.error("Error applying promo code:", error);
+            Swal.fire({
+                title: 'Error!',
+                text: 'Failed to apply promo code. Please try again.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+    };
 
     const handleBookNow = () => {
         if (test.slots > 0) {
             setIsModalOpen(true);
         } else {
-            alert("No slots available");
+            Swal.fire({
+                title: 'Error!',
+                text: 'No slots available',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         }
     };
 
@@ -61,16 +98,26 @@ const ViewDetails = () => {
                 testId: test._id,
                 testName: test.testName,
                 date: test.date,
-                price: test.price - discount,
+                price: test.price - (test.price * (discount / 100)),
                 status: 'Booked',
             };
             await axiosSecure.post('/api/bookings', bookingData);
 
-            alert("Payment successful and booking confirmed!");
+            Swal.fire({
+                title: 'Success!',
+                text: 'Payment successful and booking confirmed!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
             setIsModalOpen(false); // Close modal after successful payment
         } catch (error) {
             console.error("Error processing payment:", error);
-            alert("Payment failed. Please try again.");
+            Swal.fire({
+                title: 'Error!',
+                text: 'Payment failed. Please try again.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         } finally {
             setPaymentProcessing(false);
         }
@@ -86,7 +133,7 @@ const ViewDetails = () => {
     if (loading) {
         return (
             <div className="flex justify-center items-center h-40">
-                <ClipLoader color="#6B46C1" size={35} />
+                <RingLoader color="#6B46C1" size={35} />
             </div>
         );
     }
@@ -121,7 +168,7 @@ const ViewDetails = () => {
                         <p>{test.details}</p>
                     </div>
                     <div className="flex justify-between items-center mb-4">
-                        <p className="text-2xl text-gray-800 font-semibold">${(test.price - discount).toFixed(2)}</p>
+                        <p className="text-2xl text-gray-800 font-semibold">${(test.price - (test.price * (discount / 100))).toFixed(2)}</p>
                         <p className="text-lg text-gray-500">{new Date(test.date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}</p>
                     </div>
                     <p className="text-lg text-gray-500 mb-6">Slots Available: {test.slots}</p>
@@ -142,6 +189,7 @@ const ViewDetails = () => {
                                             <label className="block text-gray-700">Promo Code</label>
                                             <input
                                                 type="text"
+                                                name='promoCode'
                                                 value={promoCode}
                                                 onChange={(e) => setPromoCode(e.target.value)}
                                                 className="w-full p-2 border rounded"
@@ -153,7 +201,7 @@ const ViewDetails = () => {
                                                 Apply Promo Code
                                             </button>
                                         </div>
-                                        <p className="text-xl font-semibold">Total: ${(test.price - discount).toFixed(2)}</p>
+                                        <p className="text-xl font-semibold">Total: ${(test.price - (test.price * (discount / 100))).toFixed(2)}</p>
                                         <div className="mt-4 space-x-4 flex">
                                             <button
                                                 onClick={handlePayment}
